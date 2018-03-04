@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "906967245730",
+    "firebase_url": "https://techpediaapp-1cab0.firebaseio.com",
+    "project_id": "techpediaapp-1cab0",
+    "storage_bucket": "techpediaapp-1cab0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906967245730:android:57a0f331e9b227c4",
+        "android_client_info": {
+          "package_name": "cit.mini.tp.techpedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906967245730-oan973t4t27th32m65b3i34elm46fbbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpU0PMzI5F7VLu477N9UOR5LSYoOp8wjE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

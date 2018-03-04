@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">TechPedia</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_signup">signupActivity</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="title_activity_side_menu">SideMenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="title_Menu">Main Menu</string>
+    <string name="Home">Home</string>
+    <string name="Blog">Blog</string>
+    <string name="Book">Books</string>
+
+
+    <string name="title_list_book">Books</string>
+    <string name="title_display">Book Detail</string>
+    <string name="or">----OR-----</string>
+
+    <!--    <string name="todo">TODO</string>-->
+
+    <string-array name="Study_year">
+        <item>Select Year</item>
+        <item>1 Year</item>
+        <item>2 Year</item>
+        <item>3 Year</item>
+        <item>4 Year</item>
+
+    </string-array>
+    <string name="title_Blog">Blog</string>
+    <string name="title_Post">Post</string>
+    <string name="title_Sell">Sell</string>
+
+</resources>
