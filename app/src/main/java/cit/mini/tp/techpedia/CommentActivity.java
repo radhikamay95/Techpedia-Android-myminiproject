@@ -30,7 +30,7 @@ import java.util.Iterator;
 
 public class CommentActivity extends AppCompatActivity {
     //comment fetch and parse the comment in listview
-    private static final String JSON_URL = "https://techpediaapp-1cab0.firebaseio.com/Comments.json";
+
     ListView comment_list;
     ArrayList<Comment> commentlist=new ArrayList<>();
 
@@ -39,7 +39,9 @@ public class CommentActivity extends AppCompatActivity {
     private CommnetAdapter commnetAdapter;
 
     private FirebaseAuth mAuth;
-    DatabaseReference databaseBook = FirebaseDatabase.getInstance().getReference("Comments");
+    DatabaseReference databaseBlog = FirebaseDatabase.getInstance().getReference("Blog");
+    DatabaseReference dbComments=databaseBlog.child("Comments");
+    String blogId="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +55,15 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addcomment();
-                listcomment();
+
             }
         });
+        Bundle extras = getIntent().getExtras();
 
+        if (extras != null) {
+            blogId = extras.getString("postId");
+        }
+        listcomment();
 
     }
 
@@ -71,17 +78,20 @@ public class CommentActivity extends AppCompatActivity {
 
             //getting a unique id using push().getKey() method
             //it will create a unique id and we will use it as the Primary Key for our Artist
-            String id = databaseBook.push().getKey();
+
+            String id = databaseBlog.child(blogId).child("Comments").push().getKey();
 
             //creating an Artist Object
             Comment comment = new Comment(result);
 
             //Saving the Artist
-            databaseBook.child(id).setValue(comment);
+                databaseBlog.child(blogId).child("Comments").child(id).setValue(comment);
 
             //setting edittext to blank again
             commentet.setText("");
+
             Toast.makeText(this, "Comment added", Toast.LENGTH_LONG).show();
+            listcomment();
 
         }
 
@@ -92,6 +102,7 @@ public class CommentActivity extends AppCompatActivity {
 
         //making the progressbar visible
         progressBar.setVisibility(View.VISIBLE);
+        String JSON_URL = "https://techpediaapp-1cab0.firebaseio.com/Blog/"+blogId+"/Comments.json";
 
         //creating a string request to send request to the url
         StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,

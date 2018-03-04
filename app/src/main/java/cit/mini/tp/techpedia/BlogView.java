@@ -113,6 +113,7 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
                 //iterating through all the values in database
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     PostBaseclass upload = postSnapshot.getValue(PostBaseclass.class);
+                    upload.setBlogId(postSnapshot.getKey());
                     posts.add(upload);
                 }
                 //creating adapter

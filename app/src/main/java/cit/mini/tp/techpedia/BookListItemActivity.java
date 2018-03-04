@@ -51,96 +51,6 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
 
         getFilter();
     }
-
-//    @Override
-//    public int getCount() {
-//        return searchlist.size();
-//    }
-//
-//    @Override
-//    public SellBook getItem(int i) {
-//        return searchlist.get(i);
-//    }
-//
-//    @Override
-//    public long getItemId(int i) {
-//        return i;
-//    }
-//
-//
-//    //this method will return the list item
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            //getting the layoutinflater
-//            LayoutInflater inflater = LayoutInflater.from(mCtx);
-//
-//            //creating a view with our xml layout
-//            View listViewItem = inflater.inflate(R.layout.activity_list_item, null, true);
-//
-//            //getting text views
-//            TextView BName = listViewItem.findViewById(R.id.BookName);
-//           /* TextView BAuthor = listViewItem.findViewById(R.id.BookAuthor);
-//            TextView BOwner=listViewItem.findViewById(R.id.BookOwner);
-//*/
-//            //Getting the hero for the specified position
-//            SellBook books = booklist.get(position);
-//
-//            //setting hero values to textviews
-//            BName.setText(books.getName());
-//          /*  BOwner.setText(books.getOwner());
-//            BAuthor.setText(books.getAuthor());*/
-//
-//            //returning the listitem
-//            return listViewItem;
-//        }
-//    @Override
-//    public Filter getFilter() {
-//        if (itemFilter == null) {
-//           // itemFilter = new itemFilter();
-//        }
-//        return itemFilter;
-//    }
-//
-//
-//    private class ItemFilter extends Filter {
-//
-//        @Override
-//        protected FilterResults performFiltering(CharSequence charSequence) {
-//
-//            String filterString = charSequence.toString().toLowerCase();
-//
-//            FilterResults results = new FilterResults();
-//
-//            final List<SellBook> list = booklist;
-//
-//            int count = list.size();
-//            final ArrayList<SellBook> nlist = new ArrayList<SellBook>(count);
-//
-//            SellBook filterableString ;
-//
-//            for (int i = 0; i < count; i++) {
-//                filterableString = list.get(i);
-//                if (booklist.get(i).getName().toLowerCase().contains(filterString)) {
-//                    nlist.add(filterableString);
-//                }
-//            }
-//
-//            results.values = nlist;
-//            results.count = nlist.size();
-//
-//            return results;
-//        }
-//
-//
-//        @Override
-//        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-//            String filterString = filterResults.toString().toLowerCase();
-//            FilterResults results = new FilterResults();
-//            final List list = booklist;
-//        }
-//    }
-//}
-
     /**
      * Get size of user list
      * @return userList size
@@ -160,6 +70,9 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
         return filteredList.get(i);
     }
 
+    public List<SellBook> getFilteredItem(){
+        return filteredList;
+    }
     /**
      * Get user list item id
      * @param i item index
@@ -263,6 +176,7 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
                         tempList.add(user);
                     }
                 }
+               // booklist.addAll(tempList);
 
                 filterResults.count = tempList.size();
                 filterResults.values = tempList;
@@ -270,6 +184,8 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
                 filterResults.count = booklist.size();
                 filterResults.values = booklist;
             }
+           // booklist.clear();
+
 
             return filterResults;
         }
@@ -283,6 +199,7 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredList = (ArrayList<SellBook>) results.values;
+
             notifyDataSetChanged();
         }
     }

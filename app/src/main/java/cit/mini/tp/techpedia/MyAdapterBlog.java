@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import java.util.List;
 public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolder>{
     private Context context;
     private List<PostBaseclass> posts;
+
     StorageReference storageReference;
     ProgressDialog pd;
 
@@ -58,6 +60,8 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
         holder.imagetitle.setText(postBaseclass.getImageTitle());
         holder.imagename.setText(postBaseclass.getImageName());
         holder.description.setText(postBaseclass.getImage_Desription());
+        holder.blogId.setText(postBaseclass.getBlogId());
+//        holder.comment.setText(postBaseclass.getComments());
      /*   holder.filedowname.setText(postBaseclass.getFilename());*/
 
 
@@ -79,7 +83,7 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView imagename,imagetitle,description,filedowname,comment;
+        public TextView imagename,imagetitle,description,filedowname,comment,blogId;
        /* FloatingActionButton filedownload;*/
         public ImageView imageView;
 
@@ -92,12 +96,14 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             description=(TextView)itemView.findViewById(R.id.tvdescription);
             comment=(TextView)itemView.findViewById(R.id.tvcomment);
+            blogId=(TextView)itemView.findViewById(R.id.blogId);
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println(this);
-                    Intent intent = new Intent(context, CommentActivity.class);
-                    context.startActivity(intent);
+                   // System.out.println(view.getId());
+                    Intent intent = new Intent(view.getContext(), CommentActivity.class);
+                    intent.putExtra("postId", blogId.getText());
+                    view.getContext().startActivity(intent);
 
                 }
             });

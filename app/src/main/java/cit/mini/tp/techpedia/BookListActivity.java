@@ -86,9 +86,15 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 Intent intent = new Intent(BookListActivity.this, BookDetailedViewActivity.class);
-                intent.putExtra("BookName",booklist.get(pos).getName());
-                intent.putExtra("BookAuthor",booklist.get(pos).getAuthor());
-                intent.putExtra("BookOwner",booklist.get(pos).getOwner());
+                if(bookAdapter.getFilteredItem().size()>0){
+                    intent.putExtra("BookName",bookAdapter.getFilteredItem().get(pos).getName());
+                    intent.putExtra("BookAuthor",bookAdapter.getFilteredItem().get(pos).getAuthor());
+                    intent.putExtra("BookOwner",bookAdapter.getFilteredItem().get(pos).getOwner());
+                }else {
+                    intent.putExtra("BookName", booklist.get(pos).getName());
+                    intent.putExtra("BookAuthor", booklist.get(pos).getAuthor());
+                    intent.putExtra("BookOwner", booklist.get(pos).getOwner());
+                }
                 startActivity(intent);
 
             }
@@ -180,6 +186,7 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
 
                             //creating custom adapter object
                             bookAdapter = new BookListItemActivity(BookListActivity.this, booklist);
+
 
                             //adding the adapter to listview
                             listView.setAdapter(bookAdapter);

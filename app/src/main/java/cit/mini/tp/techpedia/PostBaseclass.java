@@ -6,6 +6,7 @@ package cit.mini.tp.techpedia;
 
 public class PostBaseclass {
 
+        public String blogId;
         public String imageTitle;
         public String image_Desription;
         public String imageURL;
@@ -25,6 +26,7 @@ public class PostBaseclass {
             this.imageURL= url;
             this.imageName=name;
 
+
         }
         public  PostBaseclass(String filename, String fileurl){
             this.fileurl=fileurl;
@@ -36,7 +38,7 @@ public class PostBaseclass {
     }
 
 
-        public  String getImageName() {
+    public  String getImageName() {
         return imageName;
     }
     public String getImageTitle(){return  imageTitle;}
@@ -57,6 +59,11 @@ public class PostBaseclass {
     }
     public String getComments() {
         return comments;
+    }
+    public String getBlogId(){return blogId;}
+
+    public void setBlogId(String blogId){
+        this.blogId=blogId;
     }
 
 }
