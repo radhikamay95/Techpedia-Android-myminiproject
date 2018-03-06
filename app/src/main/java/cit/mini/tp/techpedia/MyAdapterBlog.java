@@ -61,8 +61,8 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
         holder.imagename.setText(postBaseclass.getImageName());
         holder.description.setText(postBaseclass.getImage_Desription());
         holder.blogId.setText(postBaseclass.getBlogId());
-        if(postBaseclass.getComments()!=null) {
-            holder.comment.setText("Comments(" + postBaseclass.getComments().length() + ")");
+        if(postBaseclass.getCommentCounts()!=null) {
+            holder.comment.setText("Comments(" + postBaseclass.getCommentCounts() + ")");
         }else {
             holder.comment.setText("Comments(0)");
         }

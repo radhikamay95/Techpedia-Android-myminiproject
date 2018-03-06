@@ -145,7 +145,7 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
 
     }
 
-    private void loadBookList() {
+       private void loadBookList() {
         //getting the progressbar
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 

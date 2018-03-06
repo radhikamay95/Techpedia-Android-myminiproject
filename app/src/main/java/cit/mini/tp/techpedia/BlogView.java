@@ -68,12 +68,12 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
     private List<PostBaseclass> posts;
     private Button download;
     StorageReference storageReference;
-/*
-    FloatingActionButton filedownload;
-    ProgressDialog pd;*/
+	/*
+		FloatingActionButton filedownload;
+		ProgressDialog pd;*/
 
     //commment
-    /*DatabaseReference databaseReference;*/
+		/*DatabaseReference databaseReference;*/
     EditText com_typing;
     TextView com_sent;
 
@@ -90,24 +90,24 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
-      // Set the layout manager to your recyclerview
+        // Set the layout manager to your recyclerview
         recyclerView.setLayoutManager(mLayoutManager);
 
-       /* filedownload=(FloatingActionButton)findViewById(R.id.fab_filedownload);
-*/
+		   /* filedownload=(FloatingActionButton)findViewById(R.id.fab_filedownload);
+	*/
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         progressDialog = new ProgressDialog(this);
 
         posts = new ArrayList<>();
 
-      /* //download=(Button) findViewById(R.id.fab_filedownload);
-        //comment
-        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.Database_comment);
-     *//*   com_typing=(EditText)findViewById(R.id.et_comment) ;
-        com_sent=(TextView)findViewById(R.id.tvcommmentsent);
-*//*
-*/
+		  /* //download=(Button) findViewById(R.id.fab_filedownload);
+			//comment
+			mDatabase = FirebaseDatabase.getInstance().getReference(Constants.Database_comment);
+		 *//*   com_typing=(EditText)findViewById(R.id.et_comment) ;
+			com_sent=(TextView)findViewById(R.id.tvcommmentsent);
+	*//*
+	*/
 
         //displaying progress dialog while fetching images
         progressDialog.setMessage("Please wait...");
@@ -118,59 +118,17 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 progressDialog.dismiss();
-                System.out.println( snapshot.getChildrenCount());
                 //iterating through all the values in database
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     final PostBaseclass upload = postSnapshot.getValue(PostBaseclass.class);
                     upload.setBlogId(postSnapshot.getKey());
-                    System.out.println(mDatabase.child(postSnapshot.getKey()).child("Comments"));
-/*
-                    mDatabase = mDatabase.child(postSnapshot.getKey()).child("Comments");
-*/
-                   /* mDatabaseref_comment.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            long size = dataSnapshot.getChildrenCount();
-                        }
+                    //long maxNum = snapshot.getChildrenCount();
+					  /*  int nums = (int)maxNum;
+						disp_msg.setText(msg.toString() + Integer.toString(nums));*/
+                    // System.out.println(mDatabase.child(postSnapshot.getKey()).child("Comments"));
+                    System.out.println(postSnapshot.child("Comments").getChildrenCount() + "");
+                    upload.setCommentCounts(String.valueOf(postSnapshot.child("Comments").getChildrenCount()));
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-*/
-
-//                    String JSON_URL = "https://techpediaapp-1cab0.firebaseio.com/Blog/"+postSnapshot.getKey()+"/Comments.json";
-//                    StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
-//                            new Response.Listener<String>() {
-//                                @Override
-//                                public void onResponse(String response) {
-//                                    //hiding the progressbar after completion
-//
-//
-//                                    try {
-//                                        //getting the whole json object from the response
-//                                        JSONObject obj = new JSONObject(response);
-//                                        int count=0;
-//                                        for (Iterator<String> it = obj.keys(); it.hasNext(); ) {
-//                                         count=count+1;
-//                                        }
-//
-//                                        upload.setCommentCounts(String.valueOf(count));
-//
-//
-//                                    } catch (JSONException e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                }
-//                            },
-//                            new Response.ErrorListener() {
-//                                @Override
-//                                public void onErrorResponse(VolleyError error) {
-//                                    //displaying the error in toast if occurrs
-//                                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
                     posts.add(upload);
                 }
                 //creating adapter
@@ -186,105 +144,105 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
             }
         });
 
-//       TextView comment=(TextView)findViewById(R.id.tvcomment);
-//       comment.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View view) {
-//               //Intent intent = new Intent(this, CommentActivity.class);
-//               //startActivity(intent);
-//           }
-//       });
+        //       TextView comment=(TextView)findViewById(R.id.tvcomment);
+        //       comment.setOnClickListener(new View.OnClickListener() {
+        //           @Override
+        //           public void onClick(View view) {
+        //               //Intent intent = new Intent(this, CommentActivity.class);
+        //               //startActivity(intent);
+        //           }
+        //       });
 
     }
 
-    /*public void storecomments() {
+		/*public void storecomments() {
 
-        PostBaseclass postBaseclass = new PostBaseclass(com_type.getText().toString());
+			PostBaseclass postBaseclass = new PostBaseclass(com_type.getText().toString());
 
-        String commenttext = mDatabase.push().getKey();
-        mDatabase.child(commenttext).setValue(postBaseclass);
-    }*/
+			String commenttext = mDatabase.push().getKey();
+			mDatabase.child(commenttext).setValue(postBaseclass);
+		}*/
 
-      public boolean onCreateOptionsMenu(Menu menu) {
-          // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
 
-          MenuInflater inflater = getMenuInflater();
-          inflater.inflate(R.menu.menu_main_blog, menu);
-          //   inflater.inflate(R.menu.menu_main_book, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_blog, menu);
+        //   inflater.inflate(R.menu.menu_main_book, menu);
 
-                 return true;
-      }
-      @Override
-      public boolean onOptionsItemSelected(MenuItem item) {
-          int id = item.getItemId();
-          if (id == android.R.id.home) {
-
-              NavUtils.navigateUpFromSameTask(this);
-              return true;
-          }
-
-          else if (id == R.id.action_addPost) {
-              startActivity(new Intent(BlogView.this,PostActivity.class));
-          }
-          return super.onOptionsItemSelected(item);
-
-
-      }/*
-    public void downloadFile(){
-
-
-        storageReference = FirebaseStorage.getInstance().getReference(PostActivity.Constants.Storagefile_upload);
-        StorageReference sRef = storageReference.child("1519559906735.docx");
-        // Reference to an image file in Firebase Storage
-        sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Use the bytes to display the image
-                System.out.println
-                        (bytes);
-                String path= Environment.getExternalStorageDirectory()+"/"+"1519559906735.docx";
-                try {
-                    FileOutputStream fos=new FileOutputStream(path);
-                    fos.write(bytes);
-                    fos.close();
-                    //Toast.makeText(BlogView.this, "Success!!!", Toast.LENGTH_SHORT).show();
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                     Toast.makeText(BlogView.this, e.toString(), Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(BlogView.this, e.toString(), Toast.LENGTH_SHORT).show();
-                }
-                pd.dismiss();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
+        return true;
     }
-
     @Override
-    public void onClick(View view) {
-            pd=new ProgressDialog(this);
-            pd.setProgress(100);;
-            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pd.setCancelable(false);
-            pd.show();
-//        if(view == filedownload){
-//            pd=new ProgressDialog(this);
-//            pd.setProgress(100);;
-//            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//            pd.setCancelable(false);
-//            pd.show();
-//            downloadFile();
-//        }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
 
-    }*/
-   /* public class Constants{
-        public static final String Database_comment="Comments";
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
 
-    }*/
+        else if (id == R.id.action_addPost) {
+            startActivity(new Intent(BlogView.this,PostActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+
+
+    }/*
+		public void downloadFile(){
+
+
+			storageReference = FirebaseStorage.getInstance().getReference(PostActivity.Constants.Storagefile_upload);
+			StorageReference sRef = storageReference.child("1519559906735.docx");
+			// Reference to an image file in Firebase Storage
+			sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+				@Override
+				public void onSuccess(byte[] bytes) {
+					// Use the bytes to display the image
+					System.out.println
+							(bytes);
+					String path= Environment.getExternalStorageDirectory()+"/"+"1519559906735.docx";
+					try {
+						FileOutputStream fos=new FileOutputStream(path);
+						fos.write(bytes);
+						fos.close();
+						//Toast.makeText(BlogView.this, "Success!!!", Toast.LENGTH_SHORT).show();
+
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+						 Toast.makeText(BlogView.this, e.toString(), Toast.LENGTH_SHORT).show();
+					} catch (IOException e) {
+						e.printStackTrace();
+						Toast.makeText(BlogView.this, e.toString(), Toast.LENGTH_SHORT).show();
+					}
+					pd.dismiss();
+				}
+			}).addOnFailureListener(new OnFailureListener() {
+				@Override
+				public void onFailure(@NonNull Exception exception) {
+					// Handle any errors
+				}
+			});
+		}
+
+		@Override
+		public void onClick(View view) {
+				pd=new ProgressDialog(this);
+				pd.setProgress(100);;
+				pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				pd.setCancelable(false);
+				pd.show();
+	//        if(view == filedownload){
+	//            pd=new ProgressDialog(this);
+	//            pd.setProgress(100);;
+	//            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+	//            pd.setCancelable(false);
+	//            pd.show();
+	//            downloadFile();
+	//        }
+
+		}*/
+	   /* public class Constants{
+			public static final String Database_comment="Comments";
+
+		}*/
 }
