@@ -13,7 +13,9 @@ public class PostBaseclass {
         public String imageName;
         public String filename;
         public String fileurl;
-       public String comments;
+       public  String comments;
+       public String commentCounts;
+       //public String commentCount;
 
         public PostBaseclass() {
 
@@ -57,14 +59,24 @@ public class PostBaseclass {
     public String getFileurl() {
         return fileurl;
     }
+    public void setComments(String comments) {
+        this.comments=comments;
+
+    }
     public String getComments() {
         return comments;
     }
+
     public String getBlogId(){return blogId;}
 
     public void setBlogId(String blogId){
         this.blogId=blogId;
     }
+
+    public void setCommentCounts(String commentCounts){
+        this.commentCounts= commentCounts;
+    }
+    public String getCommentCounts(){return commentCounts;}
 
 }
 

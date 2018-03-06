@@ -24,6 +24,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,8 +43,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import android.app.ProgressDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class BlogView extends AppCompatActivity /* implements View.OnClickListener*/{
     //recyclerview object
@@ -51,6 +59,7 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
 
     //database reference
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseref_comment;
 
     //progress dialog
     private ProgressDialog progressDialog;
@@ -109,11 +118,59 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 progressDialog.dismiss();
-
+                System.out.println( snapshot.getChildrenCount());
                 //iterating through all the values in database
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    PostBaseclass upload = postSnapshot.getValue(PostBaseclass.class);
+                    final PostBaseclass upload = postSnapshot.getValue(PostBaseclass.class);
                     upload.setBlogId(postSnapshot.getKey());
+                    System.out.println(mDatabase.child(postSnapshot.getKey()).child("Comments"));
+/*
+                    mDatabase = mDatabase.child(postSnapshot.getKey()).child("Comments");
+*/
+                   /* mDatabaseref_comment.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            long size = dataSnapshot.getChildrenCount();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+*/
+
+//                    String JSON_URL = "https://techpediaapp-1cab0.firebaseio.com/Blog/"+postSnapshot.getKey()+"/Comments.json";
+//                    StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
+//                            new Response.Listener<String>() {
+//                                @Override
+//                                public void onResponse(String response) {
+//                                    //hiding the progressbar after completion
+//
+//
+//                                    try {
+//                                        //getting the whole json object from the response
+//                                        JSONObject obj = new JSONObject(response);
+//                                        int count=0;
+//                                        for (Iterator<String> it = obj.keys(); it.hasNext(); ) {
+//                                         count=count+1;
+//                                        }
+//
+//                                        upload.setCommentCounts(String.valueOf(count));
+//
+//
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//                            },
+//                            new Response.ErrorListener() {
+//                                @Override
+//                                public void onErrorResponse(VolleyError error) {
+//                                    //displaying the error in toast if occurrs
+//                                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
                     posts.add(upload);
                 }
                 //creating adapter

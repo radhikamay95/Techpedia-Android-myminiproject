@@ -61,8 +61,10 @@
             android:label="@string/title_Post" />
         <activity
             android:name=".BlogView"
-            android:label="@string/Blog"></activity>
-        <activity android:name=".CommentActivity"></activity>
+            android:label="@string/Blog" />
+        <activity android:name=".CommentActivity" />
+
+        <activity android:name=".Student_ProfileActivity"></activity>
     </application>
 
 </manifest>

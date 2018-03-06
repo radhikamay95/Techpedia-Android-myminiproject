@@ -87,6 +87,7 @@ public class CommentActivity extends AppCompatActivity {
             //Saving the Artist
                 databaseBlog.child(blogId).child("Comments").child(id).setValue(comment);
 
+
             //setting edittext to blank again
             commentet.setText("");
 

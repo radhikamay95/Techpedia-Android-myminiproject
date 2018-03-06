@@ -61,6 +61,11 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
         holder.imagename.setText(postBaseclass.getImageName());
         holder.description.setText(postBaseclass.getImage_Desription());
         holder.blogId.setText(postBaseclass.getBlogId());
+        if(postBaseclass.getComments()!=null) {
+            holder.comment.setText("Comments(" + postBaseclass.getComments().length() + ")");
+        }else {
+            holder.comment.setText("Comments(0)");
+        }
 //        holder.comment.setText(postBaseclass.getComments());
      /*   holder.filedowname.setText(postBaseclass.getFilename());*/
 
@@ -96,6 +101,8 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             description=(TextView)itemView.findViewById(R.id.tvdescription);
             comment=(TextView)itemView.findViewById(R.id.tvcomment);
+
+
             blogId=(TextView)itemView.findViewById(R.id.blogId);
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override
