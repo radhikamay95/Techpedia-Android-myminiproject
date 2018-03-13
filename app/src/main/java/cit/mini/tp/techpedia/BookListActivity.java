@@ -90,10 +90,23 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
                     intent.putExtra("BookName",bookAdapter.getFilteredItem().get(pos).getName());
                     intent.putExtra("BookAuthor",bookAdapter.getFilteredItem().get(pos).getAuthor());
                     intent.putExtra("BookOwner",bookAdapter.getFilteredItem().get(pos).getOwner());
+                    intent.putExtra("BookEdition", bookAdapter.getFilteredItem().get(pos).getEdpub());
+                   intent.putExtra("BookPrice",bookAdapter.getFilteredItem().get(pos).getPrice());
+                    intent.putExtra("Bookaccc", bookAdapter.getFilteredItem().get(pos).getAccess());
+                    intent.putExtra("Bookcontact", bookAdapter.getFilteredItem().get(pos).getContact());
+                    intent.putExtra("Bookremark", bookAdapter.getFilteredItem().get(pos).getRemark());
                 }else {
                     intent.putExtra("BookName", booklist.get(pos).getName());
                     intent.putExtra("BookAuthor", booklist.get(pos).getAuthor());
                     intent.putExtra("BookOwner", booklist.get(pos).getOwner());
+                    intent.putExtra("Bookediton", booklist.get(pos).getEdpub());
+                    intent.putExtra("BookOwner", booklist.get(pos).getOwner());
+                    intent.putExtra("Bookaccc", booklist.get(pos).getAccess());
+                    intent.putExtra("Bookcontact", booklist.get(pos).getContact());
+                    intent.putExtra("Bookremark", booklist.get(pos).getRemark());
+
+
+
                 }
                 startActivity(intent);
 
@@ -175,10 +188,13 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
                                 //getting the json object of the particular index inside the array
                                 String keyStr = (String)key;
                                 JSONObject bookObject = obj.getJSONObject(keyStr);
-
+/*public SellBook(String id, String name, String owner, String author,String edpub,String price,
+                    String access,String contact,String remark)*/
 
                                 //creating a hero object and giving them the values from json object
-                                SellBook books = new SellBook(bookObject.getString("id"), bookObject.getString("name"),bookObject.getString("owner"),bookObject.getString("author"));
+                                SellBook books = new SellBook(bookObject.getString("id"), bookObject.getString("name"),bookObject.getString("owner"),bookObject.getString("author"),
+                                        bookObject.getString("edpub"),bookObject.getString("price"),
+                                        bookObject.getString("access"),bookObject.getString("contact"),bookObject.getString("remark"));
 
                                 //adding the hero to herolist
                                 booklist.add(books);

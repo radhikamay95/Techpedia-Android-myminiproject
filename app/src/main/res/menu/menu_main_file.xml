@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cit.mini.tp.techpedia.BlogView">
+
+    <item
+        android:id="@+id/action_addPost"
+        android:icon="@drawable/ic_add_white"
+
+        app:showAsAction="ifRoom"
+        android:title="AddPost"/>
+    <!--android:onClick="NewBook"-->
+
+
+</menu>

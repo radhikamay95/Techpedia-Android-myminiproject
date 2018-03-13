@@ -164,10 +164,10 @@ public class SideMenuActivity extends BaseActivity
                     Intent g= new Intent(SideMenuActivity.this,Student_ProfileActivity.class);
                     startActivity(g);
                     break;
-                /* case R.id.nav_slideshow:
-                    Intent s= new Intent(SideMenuActivity.this,Slideshow.class);
-                    startActivity(s);
-                case R.id.nav_tools:
+                case R.id.nav_File:
+                    Intent k= new Intent(SideMenuActivity.this,File_VIewActivity.class);
+                    startActivity(k);
+                /*case R.id.nav_tools:
                     Intent t= new Intent(SideMenuActivity.this,Tools.class);
                     startActivity(t);
                     break;*/

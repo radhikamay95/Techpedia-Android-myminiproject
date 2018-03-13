@@ -63,8 +63,12 @@
             android:name=".BlogView"
             android:label="@string/Blog" />
         <activity android:name=".CommentActivity" />
-
-        <activity android:name=".Student_ProfileActivity"></activity>
+        <activity android:name=".Student_ProfileActivity"
+            android:label="@string/title_Profile" />
+        <activity android:name=".FileActivity"
+            android:label="@string/title_AddFILE"/>
+        <activity android:name=".File_VIewActivity"
+            android:label="@string/title_FILE"></activity>
     </application>
 
 </manifest>

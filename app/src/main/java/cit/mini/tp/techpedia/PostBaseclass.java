@@ -1,5 +1,19 @@
 package cit.mini.tp.techpedia;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.List;
+
 /**
  * Created by SARADHA on 17-02-2018.
  */
@@ -13,6 +27,7 @@ public class PostBaseclass {
         public String imageName;
         public String filename;
         public String fileurl;
+
        public  String comments;
        public String commentCounts;
        //public String commentCount;
@@ -30,6 +45,7 @@ public class PostBaseclass {
 
 
         }
+
         public  PostBaseclass(String filename, String fileurl){
             this.fileurl=fileurl;
             this.filename=filename;
@@ -52,9 +68,13 @@ public class PostBaseclass {
         public String getImageURL() {
             return imageURL;
         }
-    public String getFilename() {
+    public String  getFilename() {
         return filename;
     }
+    public void setFilename(String filename) {
+        this.filename=filename;
+    }
+
 
     public String getFileurl() {
         return fileurl;

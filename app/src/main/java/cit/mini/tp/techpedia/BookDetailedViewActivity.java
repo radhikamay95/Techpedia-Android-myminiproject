@@ -19,7 +19,7 @@ import android.support.v7.widget.Toolbar;
 public class BookDetailedViewActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
-    TextView dName, dOwner, dAuthor;
+    TextView dName, dOwner, dAuthor,dprice,dcontact,daccessories,dedition,dremark;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -32,7 +32,12 @@ public class BookDetailedViewActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar1);
         dName = (TextView) findViewById(R.id.tvdname);
         dAuthor = (TextView) findViewById(R.id.tvdauthor);
-        dOwner = (TextView) findViewById(R.id.tvdowner);
+        dOwner = (TextView) findViewById(R.id.tvdprice);
+        dprice = (TextView) findViewById(R.id.tvdowner);
+        daccessories = (TextView) findViewById(R.id.tvdacc);
+        dedition = (TextView) findViewById(R.id.tvdedit);
+        dremark = (TextView) findViewById(R.id.tvdremark);
+        dcontact = (TextView) findViewById(R.id.tvdcontact);
 
         //GET INTENT
         Intent i = this.getIntent();
@@ -44,6 +49,16 @@ public class BookDetailedViewActivity extends AppCompatActivity {
         dAuthor.setText(author);
         String owner = i.getExtras().getString("BookOwner");
         dOwner.setText(owner);
+        String edition = i.getExtras().getString("BookEdition");
+        dedition.setText(edition);
+        String price = i.getExtras().getString("BookPrice");
+        dprice.setText(price);
+        String accc = i.getExtras().getString("Bookaccc");
+        daccessories.setText(accc);
+        String contact = i.getExtras().getString("Bookcontact");
+        dcontact.setText(contact);
+        String remark = i.getExtras().getString("Bookremark");
+        dremark.setText(remark);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {

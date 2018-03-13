@@ -17,4 +17,5 @@ tools:context="cit.mini.tp.techpedia.BlogView">
 
 </android.support.v7.widget.RecyclerView>
 
+
 </RelativeLayout>

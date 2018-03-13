@@ -18,9 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddBookActivity extends AppCompatActivity {
 
-    EditText Bname;
-    EditText Bowner;
-    EditText Bauthor;
+    EditText Bname,Bowner,Bauthor,Bprice,Bedpub,Baccessories,Bcontact,Bremark;
+
     Button Sell;
     private FirebaseAuth mAuth;
     DatabaseReference databaseBook = FirebaseDatabase.getInstance().getReference("SellBooks");
@@ -35,6 +34,14 @@ public class AddBookActivity extends AppCompatActivity {
         Bname = (EditText) findViewById(R.id.etbname);
         Bowner = (EditText) findViewById(R.id.etowner);
         Bauthor = (EditText) findViewById(R.id.etbauthor);
+        Bprice = (EditText) findViewById(R.id.etbprice);
+        Bedpub = (EditText) findViewById(R.id.etbEditionPublisher);
+        Baccessories= (EditText) findViewById(R.id.etbAccessories);
+        Bremark= (EditText) findViewById(R.id.etbRemarks);
+        Bcontact= (EditText) findViewById(R.id.etbcontact);
+
+
+
         Sell = (Button) findViewById(R.id.btsell);
 
        /* database = database.child(sellboookinfo.getUid());
@@ -67,6 +74,11 @@ public class AddBookActivity extends AppCompatActivity {
         String name = Bname.getText().toString().trim();
         String owner = Bowner.getText().toString().trim();
         String author = Bauthor.getText().toString().trim();
+        String price = Bprice.getText().toString().trim();
+        String edpub = Bedpub.getText().toString().trim();
+        String accessories = Baccessories.getText().toString().trim();
+        String contact = Bcontact.getText().toString().trim();
+        String remark = Bremark.getText().toString().trim();
 
 
         //checking if the value is provided
@@ -77,7 +89,7 @@ public class AddBookActivity extends AppCompatActivity {
             String id = databaseBook.push().getKey();
 
             //creating an Artist Object
-            SellBook sellBook = new SellBook(id,name,owner,author);
+            SellBook sellBook = new SellBook(id,name,owner,author,edpub,price,accessories,contact,remark);
 
             //Saving the Artist
             databaseBook.child(id).setValue(sellBook);
@@ -86,7 +98,11 @@ public class AddBookActivity extends AppCompatActivity {
             Bname.setText("");
             Bowner.setText("");
             Bauthor.setText("");
-
+             Bprice.setText("");
+          Bedpub.setText("");
+          Baccessories.setText("");
+       Bcontact.setText("");
+       Bremark.setText("");
 
             //displaying a success toast
             Toast.makeText(this, "Book Info added", Toast.LENGTH_LONG).show();

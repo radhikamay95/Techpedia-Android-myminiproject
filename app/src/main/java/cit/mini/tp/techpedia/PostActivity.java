@@ -45,7 +45,7 @@ import java.io.IOException;
 public class PostActivity extends AppCompatActivity  {
 
     ImageView postImageView;
-    FloatingActionButton attach;
+
     EditText postdesc,posttitle,filename,postname;
     //final static int PICK_PDF_CODE = 2342;
 
@@ -87,8 +87,8 @@ public class PostActivity extends AppCompatActivity  {
         postname=(EditText)findViewById(R.id.etpostername);
         postImageView = (ImageView) findViewById(R.id.iv_post);
         postdesc = (EditText) findViewById(R.id.etdesc);
-        filename=(EditText)findViewById(R.id.etfilename);
-        attach=(FloatingActionButton)findViewById(R.id.fab);
+
+
 
 
 
@@ -123,17 +123,6 @@ public class PostActivity extends AppCompatActivity  {
 
             }
 
-        });
-        attach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent();
-
-                intent.setType("pdf/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF);
-            }
         });
 
 

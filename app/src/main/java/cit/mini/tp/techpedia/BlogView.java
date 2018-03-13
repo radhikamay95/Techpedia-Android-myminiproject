@@ -7,6 +7,8 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -163,15 +165,24 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
 			mDatabase.child(commenttext).setValue(postBaseclass);
 		}*/
 
+
+   /* @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }*/
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main_blog, menu);
-        //   inflater.inflate(R.menu.menu_main_book, menu);
-
+        getMenuInflater().inflate(R.menu.menu_main_blog, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -185,9 +196,65 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
             startActivity(new Intent(BlogView.this,PostActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+/*
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        *//*int id = item.getItemId();
 
 
-    }/*
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }*//*
+        int id=item.getItemId();
+        switch (id){
+
+            case R.id.nav_Home:
+                Intent r= new Intent(BlogView.this,SideMenuActivity.class);
+                startActivity(r);
+                break;
+            case R.id.nav_Blog:
+                Intent s= new Intent(BlogView.this,BlogView.class);
+                startActivity(s);
+                break;
+            case R.id.nav_Books:
+                Intent w= new Intent(BlogView.this,BookListActivity.class);
+                startActivity(w);
+                break;
+            case R.id.nav_profile:
+                Intent g= new Intent(BlogView.this,Student_ProfileActivity.class);
+                startActivity(g);
+                break;
+            case R.id.nav_File:
+                Intent k= new Intent(BlogView.this,File_VIewActivity.class);
+                startActivity(k);
+                *//*case R.id.nav_tools:
+                    Intent t= new Intent(SideMenuActivity.this,Tools.class);
+                    startActivity(t);
+                    break;*//*
+                // this is done, now let us go and intialise the home page.
+                // after this lets start copying the above.
+                // FOLLOW MEEEEE>>>
+        }
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }*/}/*
 		public void downloadFile(){
 
 
@@ -245,4 +312,4 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
 			public static final String Database_comment="Comments";
 
 		}*/
-}
+

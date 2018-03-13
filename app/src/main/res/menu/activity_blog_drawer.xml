@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_Home"
             android:icon="@drawable/ic_home"
             android:title="@string/Home" />
+
         <item
             android:id="@+id/nav_Blog"
             android:icon="@drawable/ic_blog"
@@ -17,10 +17,17 @@
             android:id="@+id/nav_Books"
             android:icon="@drawable/ic_book"
             android:title="@string/Book" />
+
+        <item
+            android:id="@+id/nav_File"
+            android:icon="@drawable/ic_file_icon"
+            android:title="Files" />
+
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_user_profile"
             android:title="Profile" />
+
     </group>
     <!--<item android:title="Communicate">
         <menu>
