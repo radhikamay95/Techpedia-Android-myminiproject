@@ -4,11 +4,11 @@
     tools:context="cit.mini.tp.techpedia.BlogView">
 
     <item
-        android:id="@+id/action_addPost"
+        android:id="@+id/action_addFile"
         android:icon="@drawable/ic_add_white"
 
         app:showAsAction="ifRoom"
-        android:title="AddPost"/>
+        android:title="AddFile"/>
     <!--android:onClick="NewBook"-->
 
 

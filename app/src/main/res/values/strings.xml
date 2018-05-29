@@ -36,16 +36,21 @@
 
     <!--    <string name="todo">TODO</string>-->
 
+
     <string-array name="Study_year">
         <item>Select Year</item>
         <item>1 Year</item>
         <item>2 Year</item>
         <item>3 Year</item>
         <item>4 Year</item>
-
     </string-array>
+
+
     <string name="title_Blog">Blog</string>
     <string name="title_Post">Post</string>
     <string name="title_Sell">Sell</string>
+    <string name="title_FILE">Files</string>
+    <string name="title_AddFILE">AddFiles</string>
+    <string name="title_Profile">Profile</string>
 
 </resources>

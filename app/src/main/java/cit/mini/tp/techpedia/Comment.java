@@ -1,16 +1,21 @@
 package cit.mini.tp.techpedia;
 
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
+import java.util.Date;
+
 /**
  * Created by SARADHA on 04-03-2018.
  */
 
-class Comment {
+class Comment  {
     private String img_id;
     private String comments_typied;
 
 
-    public Comment(/*String img_id,*/ String comments_typied) {
-       /* this.img_id = img_id;*/
+
+    public Comment( String comments_typied) {
         this.comments_typied = comments_typied;
 
     }
@@ -30,4 +35,5 @@ class Comment {
     public void setComments_typied(String name) {
         this.comments_typied = comments_typied;
     }
+
 }

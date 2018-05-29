@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,7 +24,13 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import android.os.Environment;
@@ -35,6 +43,7 @@ import java.util.List;
 public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolder>{
     private Context context;
     private List<PostBaseclass> posts;
+    private DatabaseReference mDatabase;
 
     StorageReference storageReference;
     ProgressDialog pd;
@@ -44,7 +53,7 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.conten_blog_activity, parent, false);
-        storageReference = FirebaseStorage.getInstance().getReference(PostActivity.Constants.Storagefile_upload);
+       /* storageReference = FirebaseStorage.getInstance().getReference(PostActivity.Constants.Storagefile_upload);*/
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -65,6 +74,11 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
             holder.comment.setText("Comments(" + postBaseclass.getCommentCounts() + ")");
         }else {
             holder.comment.setText("Comments(0)");
+        }
+        if(postBaseclass.getisapproved().equals("true")){
+            holder.approve.setText("Approved");
+            holder.approve.setEnabled(false);
+
         }
 //        holder.comment.setText(postBaseclass.getComments());
      /*   holder.filedowname.setText(postBaseclass.getFilename());*/
@@ -88,11 +102,11 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView imagename,imagetitle,description,filedowname,comment,blogId;
+        public TextView imagename,imagetitle,description,comment,blogId,approve;
        /* FloatingActionButton filedownload;*/
         public ImageView imageView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             imagename = (TextView) itemView.findViewById(R.id.tvimgname);
@@ -101,6 +115,7 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             description=(TextView)itemView.findViewById(R.id.tvdescription);
             comment=(TextView)itemView.findViewById(R.id.tvcomment);
+            approve=(Button)itemView.findViewById(R.id.btapprove);
 
 
             blogId=(TextView)itemView.findViewById(R.id.blogId);
@@ -114,7 +129,47 @@ public class MyAdapterBlog  extends RecyclerView.Adapter<MyAdapterBlog.ViewHolde
 
                 }
             });
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+            database.child("first_name").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                   String name= dataSnapshot.getValue().toString();
+                   if(!name.equalsIgnoreCase("Admin")){
+                       approve.setVisibility(View.GONE);
+                   }
 
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    //hideProgress();
+                    Log.d("==>", "==>" + databaseError);
+
+                }
+            });
+
+
+            approve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    mDatabase = FirebaseDatabase.getInstance().getReference(PostActivity.Constants.Database_upload).child(blogId.getText().toString()).child("isapproved");//adding an event listener to fetch values
+                    mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                          mDatabase.setValue("true");
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                }
+            });
 
         }
 

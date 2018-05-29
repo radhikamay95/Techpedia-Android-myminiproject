@@ -67,7 +67,10 @@ public class SideMenuActivity extends BaseActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 hideProgress();
                 UserModel userModel = dataSnapshot.getValue(UserModel.class);
-                ((TextView) findViewById(R.id.textView)).setText("Hello " + userModel.getFirst_name() + " " + userModel.getLast_name());
+                ((TextView) findViewById(R.id.tvusername)).setText("Hello " + userModel.getFirst_name() + " " + userModel.getLast_name()+" !!  ");
+                ((TextView) findViewById(R.id.tvusernamehead)).setText(userModel.getFirst_name() + " " + userModel.getLast_name());
+
+           /*tvusernamehead*/
             }
 
             @Override

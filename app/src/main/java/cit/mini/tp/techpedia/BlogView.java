@@ -32,6 +32,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -124,20 +126,45 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     final PostBaseclass upload = postSnapshot.getValue(PostBaseclass.class);
                     upload.setBlogId(postSnapshot.getKey());
+
                     //long maxNum = snapshot.getChildrenCount();
 					  /*  int nums = (int)maxNum;
 						disp_msg.setText(msg.toString() + Integer.toString(nums));*/
                     // System.out.println(mDatabase.child(postSnapshot.getKey()).child("Comments"));
                     System.out.println(postSnapshot.child("Comments").getChildrenCount() + "");
                     upload.setCommentCounts(String.valueOf(postSnapshot.child("Comments").getChildrenCount()));
+                    upload.setisapproved(postSnapshot.child("isapproved").getValue().toString());
+                    final UserModel[] userModel = new UserModel[1];
+                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    DatabaseReference database = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+                    database.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                            if(userModel.getFirst_name().equals("Admin")){
+                                posts.add(upload);
+                            }else if(upload.getisapproved().equals("true")) {
+                                posts.add(upload);
+                            }
 
-                    posts.add(upload);
+                            adapter = new MyAdapterBlog(getApplicationContext(), posts);
+                            recyclerView.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            //hideProgress();
+                            Log.d("==>", "==>" + databaseError);
+
+                        }
+                    });
+
                 }
                 //creating adapter
-                adapter = new MyAdapterBlog(getApplicationContext(), posts);
+
 
                 //adding adapter to recyclerview
-                recyclerView.setAdapter(adapter);
+
             }
 
             @Override
@@ -166,15 +193,12 @@ public class BlogView extends AppCompatActivity /* implements View.OnClickListen
 		}*/
 
 
-   /* @Override
+    @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }*/
+        super.onBackPressed();
+        // this.overridePendingTransition(R.anim.stay_in, R.anim.bottom_out);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

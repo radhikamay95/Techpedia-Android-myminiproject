@@ -19,7 +19,7 @@ import android.support.v7.widget.Toolbar;
 public class BookDetailedViewActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
-    TextView dName, dOwner, dAuthor,dprice,dcontact,daccessories,dedition,dremark;
+    TextView dName, dOwner, dAuthor,dprice,dcontact,daccessories,dedition,dremark,ddate;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -38,27 +38,31 @@ public class BookDetailedViewActivity extends AppCompatActivity {
         dedition = (TextView) findViewById(R.id.tvdedit);
         dremark = (TextView) findViewById(R.id.tvdremark);
         dcontact = (TextView) findViewById(R.id.tvdcontact);
+        ddate = (TextView) findViewById(R.id.tvddate);
 
         //GET INTENT
         Intent i = this.getIntent();
 
 
         String name = i.getExtras().getString("BookName");
-        dName.setText(name);
+        dName.setText("BOOK: "+name);
         String author = i.getExtras().getString("BookAuthor");
-        dAuthor.setText(author);
+        dAuthor.setText("AUTHOR: "+author);
         String owner = i.getExtras().getString("BookOwner");
-        dOwner.setText(owner);
+        dOwner.setText("OWNER: "+owner);
         String edition = i.getExtras().getString("BookEdition");
-        dedition.setText(edition);
+        dedition.setText("EDITION/PUBLISHER: "+edition);
         String price = i.getExtras().getString("BookPrice");
-        dprice.setText(price);
+        dprice.setText("PRICE: "+price);
         String accc = i.getExtras().getString("Bookaccc");
-        daccessories.setText(accc);
+        daccessories.setText("ACCESSORIES: "+accc);
         String contact = i.getExtras().getString("Bookcontact");
-        dcontact.setText(contact);
+        dcontact.setText("CONTACT: "+contact);
         String remark = i.getExtras().getString("Bookremark");
-        dremark.setText(remark);
+        dremark.setText("REMARK: "+remark);
+        String date = i.getExtras().getString("BookDate");
+        ddate.setText("DATE: "+date);
+
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {

@@ -18,10 +18,17 @@
             android:id="@+id/nav_Books"
             android:icon="@drawable/ic_book"
             android:title="@string/Book" />
+
+        <item
+            android:id="@+id/nav_File"
+            android:icon="@drawable/ic_file_icon"
+            android:title="Files" />
+
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_user_profile"
             android:title="Profile" />
+
     </group>
     <!--<item android:title="Communicate">
         <menu>

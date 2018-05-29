@@ -36,6 +36,7 @@
                 android:maxLines="1"
                 android:nextFocusForward="@+id/editLastName"
                 android:paddingBottom="4dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp" />
 
             <EditText
@@ -51,7 +52,7 @@
                 android:maxLines="1"
                 android:nextFocusForward="@+id/editSignUpEmail"
                 android:paddingBottom="7dp"
-                android:textColor="@android:color/holo_orange_light"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -70,7 +71,7 @@
             android:maxLines="1"
             android:nextFocusForward="@+id/editMobileNumber"
             android:paddingBottom="4dp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="14sp" />
 
         <EditText
@@ -87,7 +88,8 @@
             android:maxLength="14"
             android:maxLines="1"
             android:nextFocusForward="@+id/editSignUpPassword"
-            android:textSize="14sp"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="14sp" />
 
 
         <EditText
@@ -121,6 +123,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:paddingBottom="6dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="14sp" />
 
 
@@ -147,7 +150,8 @@
                 android:maxLines="1"
                 android:nextFocusForward="@+id/year"
                 android:paddingBottom="4dp"
-                android:textSize="14sp"/>
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="14sp" />
 
             <Spinner
                 android:id="@+id/year"
@@ -181,6 +185,7 @@
                 android:maxLines="1"
                 android:nextFocusForward="@+id/editstudentid"
                 android:paddingBottom="4dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp" />
 
             <EditText
@@ -196,7 +201,8 @@
                 android:maxLines="1"
                 android:nextFocusForward="@+id/btnSignUp"
                 android:paddingBottom="4dp"
-                android:textSize="14sp"/>
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="14sp" />
 
         </LinearLayout>
 

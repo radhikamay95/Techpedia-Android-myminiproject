@@ -117,7 +117,7 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
             LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.activity_list_item, parent, false);
             holder = new ViewHolder();
-            holder.iconText = (TextView) view.findViewById(R.id.BookName);
+            holder.iconText = (TextView) view.findViewById(R.id.BookDate);
             holder.name = (TextView) view.findViewById(R.id.BookName);
             //holder.iconText.setTypeface(typeface, Typeface.BOLD);
             //holder.iconText.setTextColor(activity.getResources().getColor(R.color.white));
@@ -130,9 +130,9 @@ public class BookListItemActivity extends BaseAdapter implements Filterable{
         }
 
         // bind text with view holder content view for efficient use
-        holder.iconText.setText("#");
+        holder.iconText.setText(user.getDate());
         holder.name.setText(user.getName());
-        view.setBackgroundResource(R.drawable.ic_search_white);
+       // view.setBackgroundResource(R.drawable.ic_search_white);
 
         return view;
     }

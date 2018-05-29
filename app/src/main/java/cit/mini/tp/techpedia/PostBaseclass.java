@@ -27,6 +27,7 @@ public class PostBaseclass {
         public String imageName;
         public String filename;
         public String fileurl;
+        public String isapproved;
 
        public  String comments;
        public String commentCounts;
@@ -36,12 +37,13 @@ public class PostBaseclass {
 
         }
 
-        public PostBaseclass(String title,String name, String desc,String url) {
+        public PostBaseclass(String title,String name, String desc,String url,String isapproved) {
 
             this.imageTitle = title;
             this.image_Desription=desc;
             this.imageURL= url;
             this.imageName=name;
+            this.isapproved=isapproved;
 
 
         }
@@ -97,7 +99,10 @@ public class PostBaseclass {
         this.commentCounts= commentCounts;
     }
     public String getCommentCounts(){return commentCounts;}
-
+    public void setisapproved(String isapproved){
+        this.isapproved=isapproved;
+    }
+    public String getisapproved(){return isapproved;}
 }
 
 

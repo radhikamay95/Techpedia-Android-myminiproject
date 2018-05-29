@@ -26,13 +26,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 
 public class CommentActivity extends AppCompatActivity {
     //comment fetch and parse the comment in listview
 
     ListView comment_list;
+
     ArrayList<Comment> commentlist=new ArrayList<>();
+
 
     EditText commentet;
     Button okay;
@@ -46,10 +51,12 @@ public class CommentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
+
+
+
         comment_list=(ListView)findViewById(R.id.listView2);
         commentet=(EditText)findViewById(R.id.ettyping);
         okay    =(Button)findViewById(R.id.btokay);
-
 
         okay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +90,7 @@ public class CommentActivity extends AppCompatActivity {
 
             //creating an Artist Object
             Comment comment = new Comment(result);
+
 
             //Saving the Artist
                 databaseBlog.child(blogId).child("Comments").child(id).setValue(comment);
@@ -129,7 +137,6 @@ public class CommentActivity extends AppCompatActivity {
                                 String keyStr = (String)key;
                                 JSONObject commentObject = obj.getJSONObject(keyStr);
 
-
                                 //creating a hero object and giving them the values from json object
                                 Comment comment = new Comment(commentObject.getString("comments_typied"));
 
@@ -142,6 +149,7 @@ public class CommentActivity extends AppCompatActivity {
 
                             //adding the adapter to listview
                             comment_list.setAdapter(commnetAdapter);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

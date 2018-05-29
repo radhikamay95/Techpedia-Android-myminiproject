@@ -18,6 +18,18 @@ class UserModel implements Serializable {
     private String student_id;
     private String  study_year;
 
+    public UserModel(){
+
+    }
+
+
+    /*public  UserModel(String first_name,String last_name,String email,String mobile_number,
+                      String college_name, String department_name,String student_id,String study_year)
+    {*/
+
+
+
+
     public String getUser_id() {
         return user_id;
     }

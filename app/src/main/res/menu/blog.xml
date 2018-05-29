@@ -4,7 +4,7 @@
     tools:context="cit.mini.tp.techpedia.BlogView">
 
     <item
-        android:id="@+id/action_addBook"
+        android:id="@+id/action_addPost"
         android:icon="@drawable/ic_add_white"
 
         app:showAsAction="ifRoom"

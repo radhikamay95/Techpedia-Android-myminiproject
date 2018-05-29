@@ -23,12 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSelectedListener  {
+public class SignUpActivity extends BaseActivity   {
 
     private EditText editFirstName, editLastName, editSignUpEmail, editMobileNumber, editSignUpPassword,
             editSignUpConfirmPassword,editCollegeName,editDepartmentName,editStudentID;
     private FirebaseAuth mAuth;
     private Spinner Yearspinner;
+    String year;
     ArrayAdapter<CharSequence> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSe
         Yearspinner=(Spinner)findViewById(R.id.year) ;
         adapter = ArrayAdapter.createFromResource(this, R.array.Study_year, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         Yearspinner.setAdapter(adapter);
 
         findViewById(R.id.btnSignUp).setOnClickListener(new View.OnClickListener() {
@@ -57,20 +59,19 @@ public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSe
 
                     signUp();
 
+            }
+        });
+        Yearspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               year = (String) adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
-    }
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + "selected", Toast.LENGTH_LONG).show();
-      /*  viewlist.setText(id);*/
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
     private void signUp() {
@@ -166,6 +167,7 @@ public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSe
         collegename=editCollegeName.getText().toString().trim();
         departmentname=editDepartmentName.getText().toString().trim();
         studentID=editStudentID.getText().toString().trim();
+        studyyear=year;
 
         if (firstName.length() == 0) {
             editFirstName.setError("Required Field");
@@ -188,8 +190,8 @@ public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSe
             editMobileNumber.setError("Required Field");
             isValidate = false;
         }
-        else if(mobileNumber.length() == 10) {
-            editMobileNumber.setError("10 Digits");
+        else if(mobileNumber.length()<10) {
+            editMobileNumber.setError("10 numbers");
             isValidate = false;
         }
         if(collegename.length()==0){
@@ -208,9 +210,10 @@ public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSe
             editStudentID.setError("Required Field");
             isValidate = false;
         }
-        if(collegename.toString().equals(0)) {
-            editCollegeName.setError("Required Field");
+        else if(studentID.length() < 6){
+            editStudentID.setError("6 Digits");
             isValidate = false;
+
         }
 
         if (password.length() == 0) {
@@ -229,6 +232,11 @@ public class SignUpActivity extends BaseActivity implements AdapterView.OnItemSe
             editSignUpConfirmPassword.setError("Confirm Password do not match.");
             isValidate = false;
         }
+        if(studyyear.length()==0){
+            Toast.makeText(this,"Please Select the year of studying",Toast.LENGTH_SHORT).show();
+
+        }
+
         return isValidate;
     }
 

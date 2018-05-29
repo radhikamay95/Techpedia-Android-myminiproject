@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends BaseActivity {
 
-    Button Goto;
+  TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,9 @@ public class MainActivity extends BaseActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 hideProgress();
                 UserModel userModel = dataSnapshot.getValue(UserModel.class);
-                ((TextView) findViewById(R.id.textView)).setText("Hello " + userModel.getFirst_name() + " " + userModel.getLast_name());
+               /// ((TextView) findViewById(R.id.tvusername)).setText("Hello " + userModel.getFirst_name() + " " + userModel.getLast_name());
+                username=(TextView)findViewById(R.id.tvusername);
+                username.setText("Hello " + userModel.getFirst_name() + " " + userModel.getLast_name());
             }
 
             @Override
@@ -45,7 +47,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Goto = (Button) findViewById(R.id.bt_menu);
+      /*  Goto = (Button) findViewById(R.id.bt_menu);
             Goto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -54,7 +56,7 @@ public class MainActivity extends BaseActivity {
                     startActivity(myIntent);
 
                 }
-            });
+            });*/
 
     }
 }

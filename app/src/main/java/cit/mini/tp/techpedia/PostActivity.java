@@ -78,7 +78,7 @@ public class PostActivity extends AppCompatActivity  {
         storageReference = FirebaseStorage.getInstance().getReference();
         // Assign FirebaseDatabase instance with root database name.
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.Database_upload);
-        databaseReference_file = FirebaseDatabase.getInstance().getReference(Constants.Databasefile_upload);
+      /*  databaseReference_file = FirebaseDatabase.getInstance().getReference(Constants.Databasefile_upload);*/
         // Assigning Id to ProgressDialog.
         progressDialog = new ProgressDialog(PostActivity.this);
 
@@ -114,7 +114,7 @@ public class PostActivity extends AppCompatActivity  {
                 //method
                 try {
                     uploadimage();
-                    uploadFile();
+                   /* uploadFile();*/
                 }catch(Exception e){
 
                 }
@@ -153,7 +153,7 @@ public class PostActivity extends AppCompatActivity  {
                 e.printStackTrace();
             }
         }
-       else if (requestCode == PDF&& resultCode == RESULT_OK && data != null && data.getData() != null) {
+      /* else if (requestCode == PDF&& resultCode == RESULT_OK && data != null && data.getData() != null) {
             //if a file is selected
             if (data.getData() != null) {
                 //uploading the file
@@ -161,7 +161,7 @@ public class PostActivity extends AppCompatActivity  {
             }else{
                 Toast.makeText(this, "No file chosen", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
     }
 
 
@@ -199,11 +199,11 @@ public class PostActivity extends AppCompatActivity  {
                                 progressDialog.dismiss();
 
                                 //displaying success toast
-                                Toast.makeText(getApplicationContext(), "Photo Uploaded ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Post Uploaded & Waiting for Admin Approval", Toast.LENGTH_SHORT).show();
 
                                 //creating the upload object to store uploaded image details
-                                PostBaseclass postBaseclass = new PostBaseclass(posttitle.getText().toString().trim(),postname.getText().toString().trim(),postdesc.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
-
+                                PostBaseclass postBaseclass = new PostBaseclass(posttitle.getText().toString().trim(),
+                                        postname.getText().toString().trim(),postdesc.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString(),"false");
                                 //adding an upload to firebase database
                                 String uploadId = databaseReference.push().getKey();
                                 databaseReference.child(uploadId).setValue(postBaseclass);
@@ -230,7 +230,7 @@ public class PostActivity extends AppCompatActivity  {
 
         }
 
-        public void uploadFile() {
+       /* public void uploadFile() {
             if (fileUploadURI != null) {
                 //displaying progress dialog while image is uploading
                 final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -277,7 +277,7 @@ public class PostActivity extends AppCompatActivity  {
             } else {
 
             }
-    }
+    }*/
 
 
 
@@ -286,8 +286,8 @@ public class PostActivity extends AppCompatActivity  {
         public class Constants{
             public static final String Storage_upload="BlogImages/";
             public static final String Database_upload="Blog";
-            public static final String Storagefile_upload="File/";
-            public static final String Databasefile_upload="FileName";
+            /*public static final String Storagefile_upload="File/";
+            public static final String Databasefile_upload="FileName";*/
 
         }
 

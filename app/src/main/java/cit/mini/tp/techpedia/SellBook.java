@@ -14,10 +14,11 @@ public class SellBook {
     private String contact;
     private String access;
     private String remark;
+    private String date;
 
 
-    public SellBook(String id, String name, String owner, String author,String edpub,String price,
-                    String access,String contact,String remark) {
+    public SellBook(String id, String name, String owner, String author, String edpub, String price,
+                    String access, String contact, String remark,String date) {
         this.id=id;
         this.name=name;
         this.owner=owner;
@@ -27,6 +28,7 @@ public class SellBook {
         this.access=access;
         this.contact=contact;
         this.remark=remark;
+        this.date=date;
     }
 
     public String getId() {
@@ -99,6 +101,10 @@ public class SellBook {
     public String getPrice() {
         return price;
     }
+    public String getDate() {
+        return date;
+    }
+public void setDate(String date){this.date=date;}
 
 
 }

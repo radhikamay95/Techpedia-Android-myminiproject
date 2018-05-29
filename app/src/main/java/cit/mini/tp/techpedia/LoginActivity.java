@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,8 +37,10 @@ public class LoginActivity extends BaseActivity {
 
         //For Signin
         or=(TextView)findViewById(R.id.tvelse) ;
+
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPassword = (EditText) findViewById(R.id.editPassword);
+
         findViewById(R.id.btnSignin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +54,7 @@ public class LoginActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 

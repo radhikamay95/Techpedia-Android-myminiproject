@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by SARADHA on 04-03-2018.
@@ -69,7 +71,7 @@ public class CommnetAdapter extends BaseAdapter {
         // bind text with view holder content view for efficient use
        /* holder.iconText.setText("#");*/
         holder.name.setText(user.getComments_typied());
-        view.setBackgroundResource(R.drawable.ic_search_white);
+       // view.setBackgroundResource(R.drawable.ic_search_white);
 
         return view;
     }

@@ -4,13 +4,10 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.support.v7.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -33,14 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
 
 
 public class BookListActivity extends AppCompatActivity implements  SearchView.OnQueryTextListener  {
@@ -95,6 +88,7 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
                     intent.putExtra("Bookaccc", bookAdapter.getFilteredItem().get(pos).getAccess());
                     intent.putExtra("Bookcontact", bookAdapter.getFilteredItem().get(pos).getContact());
                     intent.putExtra("Bookremark", bookAdapter.getFilteredItem().get(pos).getRemark());
+                    intent.putExtra("BookDate", bookAdapter.getFilteredItem().get(pos).getDate());
                 }else {
                     intent.putExtra("BookName", booklist.get(pos).getName());
                     intent.putExtra("BookAuthor", booklist.get(pos).getAuthor());
@@ -104,16 +98,13 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
                     intent.putExtra("Bookaccc", booklist.get(pos).getAccess());
                     intent.putExtra("Bookcontact", booklist.get(pos).getContact());
                     intent.putExtra("Bookremark", booklist.get(pos).getRemark());
-
-
+                    intent.putExtra("BookDate", booklist.get(pos).getDate());
 
                 }
                 startActivity(intent);
 
             }
         });
-
-
 
     }
 
@@ -194,7 +185,7 @@ public class BookListActivity extends AppCompatActivity implements  SearchView.O
                                 //creating a hero object and giving them the values from json object
                                 SellBook books = new SellBook(bookObject.getString("id"), bookObject.getString("name"),bookObject.getString("owner"),bookObject.getString("author"),
                                         bookObject.getString("edpub"),bookObject.getString("price"),
-                                        bookObject.getString("access"),bookObject.getString("contact"),bookObject.getString("remark"));
+                                        bookObject.getString("access"),bookObject.getString("contact"),bookObject.getString("remark"),bookObject.getString("date"));
 
                                 //adding the hero to herolist
                                 booklist.add(books);
