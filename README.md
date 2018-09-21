@@ -1,4 +1,4 @@
-# myminiproject
+# myminiproject-Techpedia An Android Application 
 Project Name -Techpedia
 Techpedia is an Android application for student over the college level.
 Here students can sell and buy their books, share their technical knowledge. 
